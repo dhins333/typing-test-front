@@ -1,12 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import 'normalize.css/normalize.css';
+import './styles/styles.scss';
+import AppRouter from './AppRouter';
 
 const app = document.querySelector('#root');
 
-const template = 
-<div>
-  <p>React Template</p>
-</div>
-
-ReactDOM.render(template,app);
+ReactDOM.render(<AppRouter/>,app);

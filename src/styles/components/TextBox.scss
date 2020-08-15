@@ -5,3 +5,11 @@
     white-space: nowrap;
     overflow-x: hidden;
 }
+
+.text{
+    transform: translate(50%);
+}
+
+.text-element:nth-child(1){
+    color:$header-blue
+}

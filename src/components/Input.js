@@ -5,8 +5,8 @@ const Input = () => {
 
     const [inputValue,setInput] = useState('');
     const dispatch = useDispatch();
-    const roundState = useSelector((state) => {
-        return state.roundState;
+    const [roundState,position,words] = useSelector((state) => {
+        return [state.roundState,state.position,state.words];
     })
 
 
@@ -32,6 +32,11 @@ const Input = () => {
     const onInputKeyDown = (e) => {
         if(roundState === 'started'){
             if(e.key === ' '){
+                if(e.target.value === words[position]){
+                    dispatch({type:'calculate_wpm'});
+                }
+                dispatch({type:'incerement_position'})
+                dispatch({type:'calculate_accuracy'})
                 setInput('');
             }
         }

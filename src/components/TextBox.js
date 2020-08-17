@@ -1,11 +1,19 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { populateWords } from '../actions/actions';
 
 const TextBox = () => {
 
     const [words,position] = useSelector((state) => {
         return [state.words,state.position];
     })
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(populateWords());
+    // eslint-disable-next-line
+    },[]);
 
 
     return(

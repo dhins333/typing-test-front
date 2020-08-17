@@ -10,6 +10,8 @@ const MainReducer = (state,action) => {
             return {...state,wpm:state.wpm+1}
         case 'calculate_accuracy':
             return {...state,accuracy:Math.round((state.wpm/state.position) * 100)}
+        case 'fill_words':
+            return {...state,words:[...action.words],roundState:'not started'}
         default:
             return state;
     }

@@ -44,7 +44,7 @@ const Input = () => {
 
     return(
         <div className = 'input-container'>
-            <input type='text' className='input-text' value = {inputValue} onChange = {onInputChange} onKeyDown = {onInputKeyDown} disabled = {roundState === 'ended' || position === words.length}/>
+            <input type='text' className='input-text' value = {inputValue} onChange = {onInputChange} onKeyDown = {onInputKeyDown} disabled = {roundState === 'ended' || position === words.length || roundState === 'loading'}/>
         </div>
     )
 }

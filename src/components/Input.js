@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useState, useEffect } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 
 const Input = () => {
@@ -7,6 +7,11 @@ const Input = () => {
     const dispatch = useDispatch();
     const [roundState,position,words] = useSelector((state) => {
         return [state.roundState,state.position,state.words];
+    })
+    const inputRef = React.createRef();
+    
+    useEffect(() => {
+        inputRef.current.focus();
     })
 
 
@@ -44,7 +49,7 @@ const Input = () => {
 
     return(
         <div className = 'input-container'>
-            <input type='text' className='input-text' value = {inputValue} onChange = {onInputChange} onKeyDown = {onInputKeyDown} disabled = {roundState === 'ended' || position === words.length || roundState === 'loading'}/>
+            <input type='text' className='input-text' value = {inputValue} onChange = {onInputChange} onKeyDown = {onInputKeyDown} disabled = {roundState === 'ended' || position === words.length || roundState === 'loading'} ref = {inputRef}/>
         </div>
     )
 }

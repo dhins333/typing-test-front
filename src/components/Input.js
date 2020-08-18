@@ -19,20 +19,19 @@ const Input = () => {
         if(e.target.value === ' '){
             setInput('');
         }
-        else{
-            if(roundState === 'not started'){
-                setInput(e.target.value);
-                dispatch({type:'start_round'})
-                setTimeout(() => {
-                    setInput('');
-                    dispatch({type:'end_round'});
-                },59000)
-            }
-            else{
-                setInput(e.target.value);
-            }
+        else if(roundState === 'not started'){
+            setInput(e.target.value);
+            dispatch({type:'start_round'})
+            setTimeout(() => {
+                setInput('');
+                dispatch({type:'end_round'});
+            },59000)
         }
-    } 
+        else{
+            setInput(e.target.value);
+        }
+    }
+
 
     const onInputKeyDown = (e) => {
         if(roundState === 'started'){

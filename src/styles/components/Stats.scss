@@ -1,14 +1,14 @@
-.wpm{
+.wpm,.seconds,.accuracy{
     padding:$small-pad;
 }
 
-.wpm-value{
+.wpm-value,.seconds-value,.accuracy-value{
     font-family: 'Inconsolata', monospace;
     font-size: 5rem;
     font-weight: lighter;
     text-align: center;
 }
 
-.wpm-text{
+.wpm-text,.seconds-text,.accuracy-text{
     text-align: center;
 }

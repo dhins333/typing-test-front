@@ -12,6 +12,17 @@ const MainReducer = (state,action) => {
             return {...state,accuracy:Math.round((state.wpm/state.position) * 100)}
         case 'fill_words':
             return {...state,words:[...action.words],roundState:'not started'}
+        case 'add_socket':
+            return {...state,socket:action.socket};
+        case 'reset':
+            return {...state,    
+            roundState:'loading',
+            words:[],
+            position:0,
+            wpm:0,
+            accuracy:0}
+        case 'remove_socket':
+            return {...state,socket:undefined}
         default:
             return state;
     }

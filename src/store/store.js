@@ -8,7 +8,8 @@ const store = createStore(MainReducer,{
     words:[],
     position:0,
     wpm:0,
-    accuracy:0
+    accuracy:0,
+    socket:undefined
 },applyMiddleware(thunk));
 
 export default store;

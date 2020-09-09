@@ -1,23 +1,45 @@
 import React, { useEffect } from 'react';
-import io from 'socket.io-client';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 const Home = () => {
-
-    const dispatch = useDispatch();
     
+    const dispatch = useDispatch();
+    const [matchmaking,socket] = useSelector((state) => {
+        return [state.matchmaking,state.socket];
+    })
+
     useEffect(() => {
-        dispatch({type:'reset'})
-    },[dispatch])
+        socket.connect();
+        dispatch({type:'reset'});
+    },[dispatch,socket])
 
     const findMatch = () => {
-        const socket = io();
-        dispatch({type:'add_socket',socket});
+        dispatch({type:'set_matchmaking',value:'searching'})
+        socket.emit('queue');
     }
+
+    const renderContent = () => {
+        if(matchmaking === 'searching'){
+            return(
+                <div className = 'find-status' >Searching...</div>
+            )
+        }
+    }
+
+    socket.on('matched',(data) => {
+        console.log(`matched with ${data}`)
+    });
+    
+    socket.on('op_disconnect',(data) => {
+        console.log(data);
+    })
 
     return(
         <div className = 'home'>
-            <div className = 'find-button' onClick = {findMatch}>Find Match</div>
+            {
+                matchmaking === undefined ? <div className = 'find-button' onClick = {findMatch}>Find Match</div> : renderContent()
+            }
         </div>
     )
 }

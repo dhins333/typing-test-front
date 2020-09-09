@@ -23,6 +23,10 @@ const MainReducer = (state,action) => {
             accuracy:0}
         case 'remove_socket':
             return {...state,socket:undefined}
+        case 'remove_matchmaking':
+            return {...state,matchmaking:undefined}
+        case 'set_matchmaking':
+            return {...state,matchmaking:action.value}
         default:
             return state;
     }

@@ -12,6 +12,13 @@ const Home = () => {
     useEffect(() => {
         socket.connect();
         dispatch({type:'reset'});
+        socket.on('matched',(data) => {
+            console.log(`matched with ${data}`)
+        });
+        
+        socket.on('op_disconnect',(data) => {
+            console.log(data);
+        })
     },[dispatch,socket])
 
     const findMatch = () => {
@@ -27,13 +34,7 @@ const Home = () => {
         }
     }
 
-    socket.on('matched',(data) => {
-        console.log(`matched with ${data}`)
-    });
-    
-    socket.on('op_disconnect',(data) => {
-        console.log(data);
-    })
+ 
 
     return(
         <div className = 'home'>

@@ -22,3 +22,23 @@
     opacity: 0.9;
 }
 
+.matched-counter{
+    text-align: center;
+    font-size:$font-large
+}
+
+.word-box{
+    max-width: 1100px;
+    word-wrap: break-word;
+    margin: auto;
+    margin-top:10vh;
+    font-size:1.5rem;
+}
+
+.inline-p{
+    display: inline;
+}
+
+.active-p{
+    color:$header-blue;
+}

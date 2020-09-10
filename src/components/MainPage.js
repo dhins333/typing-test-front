@@ -14,6 +14,8 @@ const MainPage = () => {
     
     useEffect(() => {
         dispatch({type:'remove_matchmaking'});
+        dispatch({type:'reset_position'});
+        dispatch({type:'clear_points'});
         socket.disconnect();
     })
 

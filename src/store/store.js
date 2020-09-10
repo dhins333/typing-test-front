@@ -11,7 +11,8 @@ const store = createStore(MainReducer,{
     wpm:0,
     accuracy:0,
     socket,
-    matchmaking:undefined
+    matchmaking:undefined,
+    points:0
 },applyMiddleware(thunk));
 
 export default store;

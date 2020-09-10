@@ -27,6 +27,10 @@ const MainReducer = (state,action) => {
             return {...state,matchmaking:undefined}
         case 'set_matchmaking':
             return {...state,matchmaking:action.value}
+        case 'reset_position':
+            return {...state,position:0}
+        case 'clear_points':
+            return {...state,points:0}
         default:
             return state;
     }

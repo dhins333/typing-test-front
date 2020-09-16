@@ -1,0 +1,14 @@
+.input-box{
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    margin-top: $xl-mar;
+    padding: $xsmall-pad;
+    border: 1px solid $border-grey;
+    border-radius: 5px;
+}
+
+.input-box:focus{
+    outline: none;
+    border: 1px solid $header-blue;
+}

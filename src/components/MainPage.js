@@ -8,16 +8,12 @@ import { useSelector, useDispatch } from 'react-redux';
 const MainPage = () => {
 
     const dispatch = useDispatch();
-    const socket = useSelector((state) => {
-        return state.socket;
-    })
     
     useEffect(() => {
-        dispatch({type:'remove_matchmaking'});
-        dispatch({type:'reset_position'});
-        dispatch({type:'clear_points'});
-        socket.disconnect();
-    })
+        return () => {
+            dispatch({type:'reset'});
+        }
+    },[dispatch])
 
     const roundState = useSelector((state) => {
         return(state.roundState);

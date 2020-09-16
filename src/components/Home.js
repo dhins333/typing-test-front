@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Countdown from 'react-countdown';
-
-
+import WordBox from './WordBox';
+import InputBox from './InputBox';
 
 
 const Home = () => {
@@ -13,9 +13,8 @@ const Home = () => {
     })
 
     useEffect(() => {
-        socket.connect();
-        dispatch({type:'reset'});
-        
+        socket.connect();   
+             
         socket.on('matched',(data) => {
             dispatch({type:'set_matchmaking',value:'matched'});
             dispatch({type:'fill_words',words:data})
@@ -25,8 +24,15 @@ const Home = () => {
         });
         
         socket.on('op_disconnect',(data) => {
-            console.log(data);
+            alert(data);
         })
+
+        return () => {
+            dispatch({type:'remove_matchmaking'});
+            dispatch({type:'reset_position'});
+            dispatch({type:'clear_points'});
+            socket.disconnect();
+        }
 
     },[dispatch,socket])
 
@@ -48,9 +54,10 @@ const Home = () => {
         }
         else if(matchmaking === 'ready'){
             return(
-                <div className = 'word-box'>{words.map((word,index) => {
-                    return <p className = {index === position ? 'active-p inline-p':'inline-p'}>{word} </p>
-                })}</div>
+                <>
+                <WordBox words = {words} position = {position}/>
+                <InputBox words = {words} position = {position}/>
+                </>
             )
         }
     }

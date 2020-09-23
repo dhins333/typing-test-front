@@ -39,7 +39,7 @@ const Input = () => {
                 if(e.target.value === words[position]){
                     dispatch({type:'calculate_wpm'});
                 }
-                dispatch({type:'incerement_position'})
+                dispatch({type:'increment_position'})
                 dispatch({type:'calculate_accuracy'})
                 setInput('');
             }

@@ -1,0 +1,42 @@
+.progress{
+    margin-top: $xl-mar;
+}
+
+.user-slider,.op-slider{
+    display: block;
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    margin-top: $medium-mar;
+    -webkit-appearance: none;  
+    appearance: none;
+    background: #d3d3d3; 
+    outline: none; 
+    opacity: 0.7; 
+    -webkit-transition: .2s; 
+    transition: opacity .2s;
+}
+
+.user-slider::-webkit-slider-thumb,.op-slider::-webkit-slider-thumb{
+    -webkit-appearance: none; 
+    appearance: none;
+    width: 25px; 
+    height: 25px; 
+    cursor: pointer; 
+}
+
+.user-slider::-webkit-slider-thumb{
+    background-color: green;
+}
+
+.op-slider::-webkit-slider-thumb{
+    background-color: red;
+}
+
+.title{
+    display: block;
+    max-width: 1100px;
+    margin:auto;
+    font-size: $font-medium;
+    margin-bottom: $small-mar;
+}

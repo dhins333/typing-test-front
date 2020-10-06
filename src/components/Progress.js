@@ -10,9 +10,9 @@ const Progress = () => {
     return(
         <div className = 'progress'>
             <h3 className='title'>YOU:</h3>
-            <input type='range' min='0' max = '10' value={user} className = 'user-slider'></input>
+            <input type='range' min='0' max = '10' value={user} className = 'user-slider' readOnly = {true}></input>
             <h3 className='title'>OPPONENT:</h3>
-            <input type='range' min='0' max = '10' value={op} className = 'op-slider'></input>
+            <input type='range' min='0' max = '10' value={op} className = 'op-slider' readOnly = {true}></input>
         </div>
     )
 }

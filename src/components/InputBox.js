@@ -16,19 +16,9 @@ const InputBox = ({words,position}) => {
     }) 
 
     const onInputBoxChange = (e) => {
-        if(e.target.value === ' '){
-            setInputBox('');
-        }
-        else{
-            setInputBox(e.target.value.trim());
-        }
-    }
 
-    
-
-    const onInputKeyDown = (e) => {
-        if(e.key === ' '){
-            if(e.target.value === words[position] ){
+        if(e.target.value.endsWith(' ')){
+            if(e.target.value.trim() === words[position] ){
                 dispatch({type:'increment_position'});
                 dispatch({type:'increase_points'});
                 if(points === 60){
@@ -46,10 +36,15 @@ const InputBox = ({words,position}) => {
                 inputRef.current.style.border = '1px solid red';
             }
         }
+        else{
+            setInputBox(e.target.value);
+        }
+
     }
 
+
     return(
-        <input type = 'text' className='input-box' value = {InputBoxState} onChange = {onInputBoxChange} onKeyDown = {onInputKeyDown} ref={inputRef} ></input>
+        <input type = 'text' className='input-box' value = {InputBoxState} onChange = {onInputBoxChange}  ref={inputRef} ></input>
     )
 
 }

@@ -13,3 +13,9 @@
 .active-p{
     color:$header-blue;
 }
+
+@media (max-width:500px){
+    .inactive-p{
+        display: none;
+    }
+}

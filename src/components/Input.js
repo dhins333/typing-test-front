@@ -16,10 +16,19 @@ const Input = () => {
 
 
     const onInputChange = (e) => {
-        if(e.target.value === ' '){
-            setInput('');
+        if(roundState === 'started'){
+            if(e.target.value.endsWith(' ')){
+                if(e.target.value.trim() === words[position]){
+                    dispatch({type:'calculate_wpm'});
+                }
+                dispatch({type:'increment_position'})
+                dispatch({type:'calculate_accuracy'})
+                setInput('');
+            }else{
+                setInput(e.target.value);
+            }
         }
-        else if(roundState === 'not started'){
+        else {
             setInput(e.target.value);
             dispatch({type:'start_round'})
             setTimeout(() => {
@@ -27,28 +36,11 @@ const Input = () => {
                 dispatch({type:'end_round'});
             },59000)
         }
-        else{
-            setInput(e.target.value);
-        }
-    }
-
-
-    const onInputKeyDown = (e) => {
-        if(roundState === 'started'){
-            if(e.key === ' '){
-                if(e.target.value === words[position]){
-                    dispatch({type:'calculate_wpm'});
-                }
-                dispatch({type:'increment_position'})
-                dispatch({type:'calculate_accuracy'})
-                setInput('');
-            }
-        }
     }
 
     return(
         <div className = 'input-container'>
-            <input type='text' className='input-text' value = {inputValue} onChange = {onInputChange} onKeyDown = {onInputKeyDown} disabled = {roundState === 'ended' || position === words.length || roundState === 'loading'} ref = {inputRef}/>
+            <input type='text' className='input-text' value = {inputValue} onChange = {onInputChange}  disabled = {roundState === 'ended' || position === words.length || roundState === 'loading'} ref = {inputRef}/>
         </div>
     )
 }

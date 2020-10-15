@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import WordBox from './WordBox';
 import InputBox from './InputBox';
@@ -11,6 +11,7 @@ const Home = () => {
     const [matchmaking,socket,words,position] = useSelector((state) => {
         return [state.matchmaking,state.socket,state.words,state.position];
     })
+    const warningRef = useRef();
 
     useEffect(() => {
         socket.connect();   
@@ -45,8 +46,13 @@ const Home = () => {
     },[dispatch,socket])
 
     const findMatch = () => {
-        dispatch({type:'set_matchmaking',value:'searching'})
+        dispatch({type:'set_matchmaking',value:'searching'});
         socket.emit('queue');
+        setTimeout(() => {            
+            if(warningRef.current){
+                warningRef.current.style.display = 'block';
+            }
+        },10000)
     }
 
     const renderContent = () => {
@@ -94,8 +100,12 @@ const Home = () => {
     return(
         <div className = 'home'>
             {
-                matchmaking === undefined ? <div className = 'find-button' onClick = {findMatch}>Find Match</div> : renderContent()
+                matchmaking === undefined ? <div className = 'find-button' onClick = {findMatch}>Find Match</div>: renderContent()
             }
+            {
+                matchmaking === 'searching' ? <div className = 'lose-text warning' ref = {warningRef}>No other players found.Wait further for someone to join or try practice mode</div>:undefined
+            }
+            
         </div>
     )
 }
